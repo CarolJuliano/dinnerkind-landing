@@ -10,13 +10,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Dinnerkind">
 <meta property="og:title" content="Dinnerkind: Meal Planner for iPhone">
-<meta property="og:description" content="7 dinners and one grocery list, planned for you. Free to download. No sign-up. No ads.">
+<meta property="og:description" content="7 dinners and one grocery list, planned for you. Free to download. No ads.">
 <meta property="og:url" content="https://dinnerkindapp.com/">
 <meta property="og:image" content="https://dinnerkindapp.com/img/share.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="description" content="Dinnerkind plans 7 dinners that share groceries, with one grocery list sorted by store section. Free to download. No sign-up. No ads.">
+<meta name="description" content="Dinnerkind plans 7 dinners that share groceries, with one grocery list sorted by store section. Free to download. No ads.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
@@ -91,6 +91,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 /* phones */
 .phone{position:relative;width:100%;max-width:300px;aspect-ratio:640/1391;border-radius:46px;background:#111;padding:9px;box-shadow:0 30px 60px -24px rgba(36,24,110,.38),0 0 0 1px rgba(0,0,0,.06)}
 .phone img{width:100%;height:100%;object-fit:cover;border-radius:38px}
+.phone:not(.crop){aspect-ratio:auto;height:auto}.phone:not(.crop) img{display:block;height:auto;object-fit:fill}
 .phones{display:flex;justify-content:center;align-items:flex-start;position:relative;min-height:0}
 .phones .phone{max-width:min(310px,60vw)}
 .phones .phone.back{position:absolute;max-width:min(240px,48vw);transform:translate(52%,48px) rotate(4deg);z-index:0;opacity:.98}
@@ -349,7 +350,7 @@ footer a:hover{text-decoration:underline}
             <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
             <span><small>Download on the</small><b>App Store</b></span>
           </a>
-          <span class="fine">Free to download. No sign-up. No ads.</span>
+          <span class="fine">Free to download. No ads.</span>
         </div>
       </div>
       <div class="phones" aria-hidden="false">
@@ -433,7 +434,7 @@ footer a:hover{text-decoration:underline}
         <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>A separate list app, or no list</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>One grocery list, sorted by store section</div></div>
         <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>You check every recipe for allergies</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Dinners with your allergies left out</div></div>
         <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Plans don’t change when your week does</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Skip a night you’re eating out, and the list updates</div></div>
-        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Sign-ups, ads and pop-ups</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>No sign-up. No ads. Open it and start.</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Ads and pop-ups</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>No ads. Plan your week in a minute.</div></div>
       </div>
     </div>
   </section>
@@ -517,7 +518,7 @@ footer a:hover{text-decoration:underline}
         <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
         <span><small>Download on the</small><b>App Store</b></span>
       </a>
-      <span class="fine">Free to download. No sign-up. No ads.</span>
+      <span class="fine">Free to download. No ads.</span>
     </div></div>
   </section>
 
@@ -549,7 +550,7 @@ footer a:hover{text-decoration:underline}
         <div class="story-body">
           <p>For years, 5 p.m. meant the same question: “What’s for dinner?” We’d open the fridge, find half a bunch of parsley going limp, and end up ordering takeout again.</p>
           <p>We had hundreds of recipes saved. What we didn’t have was a plan.</p>
-          <p>So we built Dinnerkind. Plan the week once: 7 dinners and one grocery list. No account, no ads. Just dinner, decided.</p>
+          <p>So we built Dinnerkind. Plan the week once: 7 dinners and one grocery list. No ads, no clutter. Just dinner, decided.</p>
         </div>
         <p class="sig">The Dinnerkind team</p>
       </div>
@@ -569,7 +570,6 @@ footer a:hover{text-decoration:underline}
         <article class="step"><span class="n">2</span><h3>Get your week</h3><p>7 dinners that share groceries, with one list sorted by store section.</p></article>
         <article class="step"><span class="n">3</span><h3>Shop once, then cook</h3><p>Check off the list at the store, then follow big, clear steps each night.</p></article>
       </div>
-      <p class="steps-note">No account to create. Open it and start.</p>
     </div>
   </section>
 
@@ -581,8 +581,7 @@ footer a:hover{text-decoration:underline}
         <h2 id="faq-title">Still have questions?</h2>
       </div>
       <div class="list">
-        <details><summary>Is Dinnerkind free?</summary><p>Yes. Dinnerkind is free to download on iPhone, with no sign-up and no ads. There’s also an optional Dinnerkind Pro subscription inside the app, which comes with a 1-week free trial.</p></details>
-        <details><summary>Do I need to make an account?</summary><p>No. There’s no sign-up. Just pick how many people you cook for and any food allergies, and your week is ready.</p></details>
+        <details><summary>Is Dinnerkind free?</summary><p>Yes. Dinnerkind is free to download on iPhone, with no ads. There’s also an optional Dinnerkind Pro subscription inside the app, which comes with a 1-week free trial.</p></details>
         <details><summary>Can it leave out food allergies?</summary><p>Yes. Pick from common allergies like eggs, fish, gluten, milk, peanuts, sesame, shellfish, soy, tree nuts and wheat, or add your own, and dinners that have them are left out. Dinnerkind goes by each recipe’s ingredients, and brands vary, so always check labels.</p></details>
         <details><summary>What if I don’t like one of the dinners?</summary><p>Swap any night you want. You can also swap a single ingredient, like feta for goat cheese, and your grocery list updates too.</p></details>
         <details><summary>What if we’re eating out some nights?</summary><p>Skip any night. On This Week, press and hold a dinner and tap Skip This Night. It becomes a night off, and its groceries come off your list, so you only shop for the dinners you’ll cook.</p></details>
@@ -603,7 +602,7 @@ footer a:hover{text-decoration:underline}
           <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
           <span><small>Download on the</small><b>App Store</b></span>
         </a>
-        <span class="fine">Free to download. No sign-up. No ads.</span>
+        <span class="fine">Free to download. No ads.</span>
       </div>
       <div class="phones salmonbg" aria-hidden="true">
         <div class="phone"><img src="img/recipe.jpg" alt="" loading="lazy"></div>
@@ -627,7 +626,7 @@ footer a:hover{text-decoration:underline}
 
 <div class="stickybar" id="stickybar">
   <img src="img/icon.png" alt="" width="40" height="40">
-  <div><b>Dinnerkind: Meal Planner</b><small>Free to download. No sign-up.</small></div>
+  <div><b>Dinnerkind: Meal Planner</b><small>Free to download. No ads.</small></div>
   <a href="https://apps.apple.com/app/id6821738955" data-cta="sticky">Download</a>
 </div>
 
@@ -668,7 +667,7 @@ footer a:hover{text-decoration:underline}
     "full-plate":["For parents with a full plate","One less thing to think about,","every single night.","Dinners picked for your family, with foods you don’t like left out."],
     "before-5pm":["For busy weeknights","What if dinner was decided","before 5 p.m. hit?","Open the app and see tonight’s dinner, plus the rest of the week."],
     "fridge":["Quick fridge check","Open your fridge.","How much of it will you actually cook?","Shop for 7 planned dinners, not for “maybe.”"],
-    "no-sign-up":["For anyone tired of app clutter","No sign-up. No ads.","Just dinner, planned.","Nothing to scan or type in. Open it and start."],
+    "no-sign-up":["For anyone tired of app clutter","No ads. No clutter.","Just dinner, planned.","Pick how many you cook for, and your week is ready."],
     "picky-eaters":["For picky eaters","Don’t like an ingredient?","Swap it. The list changes too.","Feta for goat cheese, or leave out foods like mushrooms."],
     "40-minutes":["For weeknight cooks","Easy weeknight dinners,","most ready in 40 minutes or less.","Original recipes for every night, from stir-fries to salmon."],
     "grocery-list":["For easier grocery runs","One grocery list for the week.","Sorted by store section.","Add your own items too, like paper towels."],
