@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dinnerkind: Meal Planner for iPhone</title>
+<meta name="apple-itunes-app" content="app-id=6821738955">
+<link rel="icon" type="image/png" href="img/icon.png">
+<link rel="apple-touch-icon" href="img/icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dinnerkind">
+<meta property="og:title" content="Dinnerkind: Meal Planner for iPhone">
+<meta property="og:description" content="7 dinners and one grocery list, planned for you. Free to download. No sign-up. No ads.">
+<meta property="og:url" content="https://dinnerkindapp.com/">
+<meta property="og:image" content="https://dinnerkindapp.com/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="Dinnerkind plans 7 dinners that share groceries, with one grocery list sorted by store section. Free to download. No sign-up. No ads.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: the ads' own look carried onto the page. Centered two-tone hero on a lavender-to-peach wash,
+   then alternating text/phone rows, one quiet comparison table, and repeated App Store buttons. */
+:root{
+  --ink:#17161f;
+  --text:#4d4b5c;
+  --muted:#77758a;
+  --purple:#5a4bf0;
+  --purple-deep:#4637d6;
+  --purple-tint:#efedfe;
+  --orange:#e8661e;
+  --orange-ink:#b4500f;
+  --orange-tint:#fdeee2;
+  --peach:#fdf3ec;
+  --line:#e7e5f0;
+  --paper:#ffffff;
+  --display:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --wrap:1120px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--display);color:var(--ink);margin:0;text-wrap:balance;letter-spacing:-.035em;line-height:1.02}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--purple);outline-offset:3px;border-radius:6px}
+
+/* top bar, same as the ads' header line */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:#ffffff}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.025em}
+.brand img{width:36px;height:36px;border-radius:9px}
+.bname{display:flex;flex-direction:column;line-height:1}
+.bname small{font-family:var(--body);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.tally{font-size:12.5px;font-weight:600;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+.top .tally{display:none}
+@media (min-width:860px){.top .tally{display:block}}
+.btn-small{display:inline-flex;align-items:center;gap:8px;background:var(--purple);color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:10px 16px;border-radius:12px;white-space:nowrap}
+.btn-small:hover{background:var(--purple-deep)}
+
+/* hero */
+.hero{background:var(--paper);position:relative;overflow:hidden}
+.hero::after{display:none;content:"";position:absolute;right:-12%;bottom:-20%;width:70%;height:70%;background:radial-gradient(closest-side,#fde9db,rgba(253,233,219,0));pointer-events:none}
+.hero .wrap{position:relative;z-index:1;display:grid;gap:48px;padding-block:56px 72px;align-items:center}
+@media (min-width:960px){.hero .wrap{grid-template-columns:1.1fr .9fr;padding-block:80px 96px}}
+.hero-copy{display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px}
+@media (min-width:960px){.hero-copy{align-items:flex-start;text-align:left}}
+.pill{display:inline-block;background:var(--orange-tint);color:var(--orange-ink);font-weight:600;font-size:13.5px;letter-spacing:.11em;text-transform:uppercase;padding:8px 16px;border-radius:999px}
+.hero h1{font-size:clamp(42px,7.4vw,76px);font-weight:800}
+.hero h1 .twist{display:block;color:var(--purple)}
+.rule{width:56px;height:4px;border-radius:2px;background:var(--orange);border:0;margin:2px 0}
+.lede{font-size:clamp(18px,2.2vw,22px);color:var(--text);max-width:34ch;line-height:1.45}
+.cta-row{display:flex;flex-direction:column;align-items:center;gap:10px}
+@media (min-width:960px){.cta-row{align-items:flex-start}}
+.appstore{display:inline-flex;align-items:center;gap:12px;background:#000;color:#fff;text-decoration:none;border-radius:14px;padding:12px 22px 12px 18px;box-shadow:0 10px 24px -10px rgba(40,30,120,.45);transition:transform .15s ease}
+.appstore:hover{transform:translateY(-1px)}
+.appstore svg{width:26px;height:30px;flex:none}
+.appstore span{display:flex;flex-direction:column;line-height:1.1;text-align:left}
+.appstore small{font-size:12px;font-weight:500;opacity:.85}
+.appstore b{font-size:21px;font-weight:600;letter-spacing:-.01em;font-family:var(--display)}
+.fine{font-size:14.5px;color:var(--muted)}
+
+/* phones */
+.phone{position:relative;width:100%;max-width:300px;aspect-ratio:640/1391;border-radius:46px;background:#111;padding:9px;box-shadow:0 30px 60px -24px rgba(36,24,110,.38),0 0 0 1px rgba(0,0,0,.06)}
+.phone img{width:100%;height:100%;object-fit:cover;border-radius:38px}
+.phones{display:flex;justify-content:center;align-items:flex-start;position:relative;min-height:0}
+.phones .phone{max-width:min(310px,60vw)}
+.phones .phone.back{position:absolute;max-width:min(240px,48vw);transform:translate(52%,48px) rotate(4deg);z-index:0;opacity:.98}
+.phones .phone.front{z-index:1;transform:translateX(-18%) rotate(-2deg)}
+@media (max-width:520px){.phones .phone.front{transform:translateX(-22%) rotate(-2deg)}.phones .phone.back{transform:translate(48%,40px) rotate(4deg)}}
+
+/* sections */
+section{padding-block:88px}
+@media (max-width:700px){section{padding-block:64px}}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange-ink)}
+.head{display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:44px}
+.head.center{margin-inline:auto;text-align:center;align-items:center}
+.head h2{font-size:clamp(32px,4.6vw,50px);font-weight:800}
+.head h2 em{font-style:normal;color:var(--purple)}
+.head p{font-size:19px;color:var(--text);max-width:58ch}
+
+/* problem */
+.problem{background:var(--paper)}
+.grid4{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.pcard{background:#fff;box-shadow:0 12px 30px -22px rgba(40,30,120,.35);border:1px solid var(--line);border-radius:22px;padding:26px 24px;display:flex;flex-direction:column;gap:12px}
+.pcard .q{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-.02em;line-height:1.2}
+.pcard p{color:var(--text);font-size:16px}
+.pcard .ans{margin-top:auto;padding-top:14px;border-top:1px dashed #d9d5f4;color:var(--purple-deep);font-weight:600;font-size:15px}
+.quote{margin-top:28px;background:var(--purple);color:#fff;border-radius:24px;padding:30px 32px;display:grid;gap:8px}
+.quote b{font-family:var(--display);font-size:clamp(22px,2.8vw,30px);letter-spacing:-.025em;line-height:1.15;font-weight:700}
+.quote span{opacity:.88;font-size:17px}
+
+/* compare */
+.compare{background:var(--paper)}
+.ctable{border-radius:24px;overflow:hidden;border:1px solid var(--line);background:#fff;box-shadow:0 20px 50px -30px rgba(40,30,120,.25)}
+.crow{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.crow:first-child{border-top:0}
+.crow > div{padding:18px 22px;font-size:16px;min-width:0}
+.crow > div:first-child{color:var(--muted)}
+.crow > div:last-child{background:#f6f5ff;color:var(--ink);font-weight:600;border-left:1px solid var(--line);display:flex;gap:10px;align-items:flex-start}
+.crow > div:first-child{display:flex;gap:10px;align-items:flex-start}
+.crow.headrow > div{font-family:var(--display);font-size:18px;font-weight:700;letter-spacing:-.01em;color:var(--ink);padding-block:20px}
+.crow.headrow > div:last-child{background:var(--purple);color:#fff}
+.mk{flex:none;width:20px;height:20px;margin-top:2px}
+.crow > div:last-child{background:linear-gradient(90deg,#fff3ea,#f6efff)}
+.crow.headrow > div:last-child{background:linear-gradient(120deg,#ef7f45,#6b56e8)}
+.crow.headrow > div:first-child{background:#f6f5f8}
+.crow > div:last-child .mk circle{fill:#e8661e}
+.crow > div:first-child .mk circle{fill:#fde7e4}
+.crow > div:first-child .mk path{stroke:#d9534a}
+#compare-title em{color:var(--orange);background:none;-webkit-text-fill-color:var(--orange)}
+@media (max-width:560px){.crow > div{padding:14px 14px;font-size:15px}.crow.headrow > div{font-size:16px}}
+
+/* features */
+.features .feat{display:grid;gap:40px;align-items:center;padding-block:36px}
+.features .feat + .feat{border-top:0}
+@media (min-width:860px){.features .feat{grid-template-columns:1fr 1fr;gap:64px;padding-block:56px}.features .feat:nth-child(even) .fcopy{order:2}}
+.fcopy{display:flex;flex-direction:column;gap:14px;max-width:470px}
+.fcopy .eyebrow{color:var(--purple)}
+.fcopy h3{font-size:clamp(28px,3.6vw,40px);font-weight:800}
+.fcopy p{color:var(--text);font-size:18px}
+.fcopy ul{list-style:none;padding:0;margin:6px 0 0;display:grid;gap:10px}
+.fcopy li{display:flex;gap:10px;font-size:16.5px;color:var(--ink)}
+.fcopy li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--orange);margin-top:9px}
+.fshot{display:flex;justify-content:center;position:relative}
+.fshot::before{display:none;content:"";position:absolute;inset:8% 4%;border-radius:40px;background:linear-gradient(160deg,var(--purple-tint),var(--peach));z-index:0}
+.fshot .phone{max-width:min(320px,68vw);z-index:1}
+.stat{display:flex;align-items:baseline;gap:12px;margin-top:6px;padding:14px 18px;border-radius:16px;background:var(--orange-tint);color:var(--orange-ink);font-weight:600;font-size:15.5px;width:fit-content;max-width:100%}
+.stat b{font-family:var(--display);font-size:30px;letter-spacing:-.03em;color:var(--ink);font-variant-numeric:tabular-nums}
+
+/* mid cta */
+.mid{background:transparent;color:#fff;padding-block:40px}
+.midbox{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;border-radius:32px;padding:clamp(36px,5vw,56px) 24px;background:radial-gradient(120% 140% at 100% 100%,#f9a77c 0%,rgba(249,167,124,0) 45%),linear-gradient(150deg,#3a2cc4 0%,#5a4bf0 60%,#7a5cf0 100%);box-shadow:0 30px 60px -34px rgba(58,44,196,.6)}
+.mid h2{color:#fff;font-size:clamp(30px,4.4vw,48px);font-weight:800;max-width:20ch}
+.mid h2 em{font-style:normal;color:#ffd6bd}
+.mid p{color:#ecebff;font-size:19px;max-width:44ch}
+.mid .appstore{background:#fff;color:#000;box-shadow:none}
+.mid .fine{color:#dcd8ff}
+
+/* who */
+.who .grid4 .wcard{border-radius:22px;padding:26px 24px;background:#fff;border:1px solid var(--line);box-shadow:0 12px 30px -22px rgba(40,30,120,.35);display:flex;flex-direction:column;gap:10px}
+.wcard h3::before{content:"";display:block;width:28px;height:4px;border-radius:2px;background:var(--orange);margin-bottom:14px}
+.wcard h3{font-size:21px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.wcard p{color:var(--text);font-size:16px}
+
+/* how */
+.how{background:var(--paper)}
+.steps{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px 26px;display:flex;flex-direction:column;gap:12px}
+.step .n{width:40px;height:40px;border-radius:12px;background:var(--purple);color:#fff;font-family:var(--display);font-weight:700;font-size:19px;display:grid;place-items:center}
+.step h3{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.2}
+.step p{color:var(--text);font-size:16px}
+.steps-note{text-align:center;margin-top:28px;color:var(--muted);font-size:15.5px}
+
+/* faq */
+.faq .list{max-width:820px;margin:0 auto;display:grid;gap:12px}
+details{border:1px solid var(--line);border-radius:18px;background:#fff;padding:0 22px}
+details[open]{background:#fff;border-color:#d4cffa}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-family:var(--display);font-weight:700;font-size:19px;letter-spacing:-.015em}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;width:30px;height:30px;border-radius:50%;background:var(--purple-tint);color:var(--purple);display:grid;place-items:center;font-size:20px;font-weight:600;transition:transform .2s ease}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding:0 0 20px;color:var(--text);font-size:16.5px;max-width:65ch}
+
+/* final */
+.final{background:var(--paper);text-align:center;overflow:hidden;padding-bottom:0}
+.final .wrap{display:flex;flex-direction:column;align-items:center;gap:22px}
+.final h2{font-size:clamp(38px,6vw,66px);font-weight:800}
+.final h2 span{display:block;color:var(--purple)}
+.final .phones{margin-top:24px;height:clamp(360px,58vw,520px);overflow:hidden;width:100%;max-width:900px;padding-top:44px;border-radius:36px 36px 0 0;background:linear-gradient(160deg,#e3dffd 0%,#efe9fb 45%,#fde4d2 100%)}
+.final .phones .phone{max-width:min(260px,52vw)}
+
+
+/* problem-card drawings */
+.vis{height:150px;border-radius:16px;background:var(--purple-tint);position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:14px;font-size:13px;margin-bottom:4px}
+.pcard:nth-child(2) .vis{background:#eaf5ee}
+.pcard:nth-child(3) .vis{background:var(--orange-tint)}
+.pcard:nth-child(4) .vis{background:#eceaf2}
+.vis .time{font-size:11px;font-weight:600;color:var(--muted);text-align:center;letter-spacing:.04em}
+.bub{max-width:82%;padding:8px 12px;border-radius:16px;line-height:1.3;font-weight:500;width:fit-content}
+.bub.in{background:#fff;color:var(--ink);border-bottom-left-radius:5px}
+.bub.out{background:var(--purple);color:#fff;margin-left:auto;border-bottom-right-radius:5px}
+.bub.dots{background:#fff;color:var(--muted);letter-spacing:2px;padding:6px 12px}
+.shelf{display:flex;flex-direction:column;gap:7px}
+.tag{display:flex;justify-content:space-between;align-items:center;gap:8px;background:#fff;border-radius:10px;padding:7px 10px;font-weight:600;color:var(--ink);box-shadow:0 4px 10px -8px rgba(0,0,0,.3)}
+.tag small{font-weight:600;font-size:11px;color:#b4500f;background:var(--orange-tint);padding:2px 7px;border-radius:999px;white-space:nowrap}
+.tag.gone{color:var(--muted);text-decoration:line-through;text-decoration-color:#d94b2b}
+.tag.gone small{background:#fde4e0;color:#b3321b;text-decoration:none}
+.receipt{background:#fff;width:64%;margin:14px auto 0 10px;border-radius:6px 6px 0 0;padding:10px 12px 14px;font-family:ui-monospace,"SFMono-Regular",Menlo,monospace;font-size:11.5px;color:#3c3a48;box-shadow:0 6px 16px -10px rgba(0,0,0,.35);position:relative;line-height:1.55;-webkit-mask:linear-gradient(#000 85%,transparent)}
+.receipt b{display:block;text-align:center;font-size:10px;letter-spacing:.2em;color:var(--muted);margin-bottom:4px}
+.receipt .x{color:#c4c2cf;text-decoration:line-through}
+.note{position:absolute;right:8px;bottom:16px;background:var(--ink);color:#fff;font-size:11px;font-weight:600;padding:5px 9px;border-radius:999px;transform:rotate(-4deg)}
+.notif{background:rgba(255,255,255,.92);border-radius:14px;padding:10px 12px;display:grid;grid-template-columns:28px 1fr;gap:4px 10px;align-items:center;box-shadow:0 8px 18px -12px rgba(0,0,0,.4)}
+.notif i{grid-row:span 2;width:28px;height:28px;border-radius:8px;background:#e8661e;display:grid;place-items:center;color:#fff;font-style:normal;font-weight:800;font-size:14px}
+.notif strong{font-size:12.5px;color:var(--ink)}
+.notif span{font-size:12px;color:var(--text)}
+.clock{font-family:var(--display);font-weight:700;font-size:34px;letter-spacing:-.03em;color:var(--ink);text-align:center;line-height:1}
+.clock small{display:block;font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--muted);margin-top:4px}
+
+/* pointer labels on phone pictures */
+.fshot .phone{position:relative}
+.callout{position:absolute;z-index:3;display:flex;align-items:center;gap:8px;transform:translateY(-50%);white-space:nowrap;pointer-events:none}
+.callout span{background:#fff;color:var(--ink);font-weight:700;font-size:14px;padding:8px 13px;border-radius:999px;box-shadow:0 10px 24px -10px rgba(40,30,120,.45),0 0 0 1px var(--line)}
+.callout::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 4px rgba(232,102,30,.22);flex:none}
+.callout.r{left:calc(100% - 22px)}
+.callout.l{right:calc(100% - 22px);flex-direction:row-reverse}
+@media (max-width:700px){.callout span{font-size:12.5px;padding:6px 10px}.callout.r{left:auto;right:-10px;flex-direction:row-reverse}.callout.l{right:auto;left:-10px;flex-direction:row}}
+
+/* sticky download bar on phones */
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .25s ease}
+.stickybar.show{transform:none}
+.stickybar img{width:40px;height:40px;border-radius:10px;flex:none}
+.stickybar div{display:flex;flex-direction:column;line-height:1.2;min-width:0;flex:1}
+.stickybar b{font-family:var(--display);font-size:16px;letter-spacing:-.01em}
+.stickybar small{font-size:12.5px;color:var(--muted)}
+.stickybar a{background:var(--purple);color:#fff;text-decoration:none;font-weight:700;font-size:15px;padding:11px 18px;border-radius:12px;white-space:nowrap}
+@media (min-width:860px){.stickybar{display:none}}
+@media (max-width:859px){footer{padding-bottom:110px}}
+@media (prefers-reduced-motion:reduce){.stickybar{transition:none}}
+body{overflow-x:clip}
+
+footer{background:var(--ink);color:#bdbbcc;padding-block:40px;font-size:14.5px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between}
+footer .brand{color:#fff;font-size:19px}
+footer .brand img{width:30px;height:30px;border-radius:8px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+footer a{color:#e3e1ee;text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* hero glow behind the phones, same wash as the ads */
+.hero .phones::before{content:"";position:absolute;z-index:0;left:50%;top:50%;width:min(560px,96vw);height:86%;transform:translate(-44%,-46%);border-radius:44px;background:url(img/hero-oranges.jpg) 0% 10%/auto 140% no-repeat #e9d3bb;box-shadow:0 30px 60px -34px rgba(120,60,20,.45);pointer-events:none}
+@media (max-width:959px){.hero .phones::before{transform:translate(-50%,-46%);width:min(520px,100%)}}
+.hero .phones .phone{z-index:1}
+.hero .phones .phone.back{z-index:0}
+
+/* cooking phone: show the top of the screen and fade out the empty part */
+.phone.crop{aspect-ratio:640/860;border-radius:46px 46px 0 0;padding-bottom:0;box-shadow:none}
+.phone.crop::after{content:"";position:absolute;left:-2px;right:-2px;bottom:-2px;height:34%;background:linear-gradient(rgba(255,255,255,0),#fff 88%);z-index:2;pointer-events:none}
+.phone.crop img{object-fit:cover;object-position:top;border-radius:38px 38px 0 0}
+
+/* photos */
+.photo{border-radius:26px;overflow:hidden;box-shadow:0 30px 60px -34px rgba(36,24,110,.45);background:var(--purple-tint)}
+.photo img{width:100%;height:100%;object-fit:cover}
+.who-grid{display:grid;gap:20px}
+.who-grid .photo{aspect-ratio:4/3}
+.who-grid .grid4{grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr))}
+@media (min-width:960px){.who-grid{grid-template-columns:1fr 1.15fr;gap:28px;align-items:stretch}.who-grid .photo{aspect-ratio:auto;min-height:100%}.who-grid .grid4{grid-template-columns:1fr 1fr}}
+.how .photo{aspect-ratio:16/9;margin-bottom:22px}
+@media (min-width:860px){.how .photo{aspect-ratio:21/8}.how .photo img{object-position:center 30%}}
+
+/* labels on phones: below the picture, so nothing covers the app */
+@media (max-width:700px){
+  .fshot .phone{margin-bottom:104px}
+  .fshot .phone.crop{margin-bottom:96px}
+  .callout{top:auto!important;left:50%!important;right:auto!important;transform:translateX(-50%);flex-direction:row!important}
+  .callout.l{bottom:-50px}
+  .callout.r{bottom:-94px}
+  .fshot .phone:not(:has(.callout.l)) .callout.r{bottom:-50px}
+  .fshot .phone:not(:has(.callout.l)){margin-bottom:60px}
+  .callout span{font-size:13.5px;padding:7px 12px}
+}
+
+/* fade in as sections scroll into view */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+/* why we made it */
+.story{padding-top:24px}
+.story-card{max-width:860px;margin:0 auto;border-radius:32px;padding:clamp(32px,6vw,64px);background:linear-gradient(160deg,#efecff 0%,#f6f2ff 50%,#fdeadd 100%);display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+@media (max-width:700px){.story-card::before{display:none}}
+.story-card::before{content:"“";position:absolute;right:28px;top:-24px;font-family:Georgia,serif;font-size:220px;line-height:1;color:rgba(90,75,240,.12);pointer-events:none}
+.story-card h2{font-size:clamp(28px,3.8vw,42px);font-weight:800}
+.story-card h2 em{font-style:normal;color:var(--purple)}
+.story-body{display:grid;gap:14px;font-size:18.5px;color:var(--text);max-width:62ch}
+.sig{font-family:var(--display);font-weight:700;font-size:18px;color:var(--ink);display:flex;align-items:center;gap:12px;margin-top:6px}
+.sig::before{content:"";width:28px;height:3px;border-radius:2px;background:var(--orange)}
+
+/* real food photos behind some phones */
+.fshot.onphoto{padding:28px 0}
+.fshot.onphoto::before{display:block;content:"";position:absolute;inset:0 2%;border-radius:36px;background:var(--bg) center/cover no-repeat;box-shadow:0 30px 60px -34px rgba(36,24,110,.45);z-index:0}
+.fshot.onphoto .phone{box-shadow:0 34px 70px -20px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.06)}
+.fshot.onphoto .phone.crop::after{display:none}
+.fshot.onphoto .phone.crop{border-radius:46px;padding-bottom:9px;aspect-ratio:640/900}
+.fshot.onphoto .phone.crop img{border-radius:38px}
+/* cooking: steps 1 and 2 side by side */
+.fshot.duo{display:flex;justify-content:center;align-items:flex-start;gap:22px;padding:34px 0}
+.fshot.duo .phone{max-width:min(210px,40vw);flex:1 1 0}
+.fshot.duo .phone.s1{margin-top:34px}
+.fshot.duo .phone.s2{transform:none}
+.fshot.duo .callout.l{right:calc(100% - 6px)}
+@media (max-width:700px){.fshot.duo{gap:10px;padding-bottom:70px}.fshot.duo .phone{margin-bottom:0}.fshot.duo .phone.s1{margin-top:22px}.fshot.duo .phone .callout.l{bottom:-50px}}
+
+@media (max-width:700px){.fshot.onphoto{padding:24px 0 8px}.fshot.onphoto::before{inset:0 -4px}}
+.final .phones.salmonbg{background:url(img/salmon.jpg) center 40%/cover no-repeat;justify-content:flex-start;padding-left:clamp(16px,5%,48px)}
+@media (max-width:700px){.final .phones.salmonbg{background-position:0% 40%}.final .phones.salmonbg .phone{max-width:min(200px,48vw)}}
+.final .phones.salmonbg .phone{transform:none;box-shadow:0 34px 70px -20px rgba(0,0,0,.6)}
+.final .phones.salmonbg{height:auto;overflow:visible;padding-block:44px;border-radius:36px;align-items:center}
+.final{padding-bottom:72px}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <span class="tally">(7 dinners)</span>
+    <a class="brand" href="#top" aria-label="Dinnerkind: Meal Planner home"><img src="img/icon.png" alt="" width="36" height="36"><span class="bname">Dinnerkind<small>Meal Planner</small></span></a>
+    <span class="tally">(1 grocery list)</span>
+    <a class="btn-small" href="https://apps.apple.com/app/id6821738955" data-cta="nav">Get the app</a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- 1. HERO: text swaps to match the ad the visitor clicked -->
+  <section class="hero" aria-labelledby="hero-title" style="padding-block:0">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="pill" id="hero-pill">For home cooks</span>
+        <h1 id="hero-title"><span id="hero-success">What’s for dinner?</span> <span class="twist" id="hero-twist">Already decided.</span></h1>
+        <p class="lede" id="hero-kicker">7 dinners and one grocery list, planned for you. Your dinners share ingredients, so less food ends up in the trash.</p>
+        <div class="cta-row">
+          <a class="appstore" href="https://apps.apple.com/app/id6821738955" data-cta="hero" aria-label="Download Dinnerkind on the App Store">
+            <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+            <span><small>Download on the</small><b>App Store</b></span>
+          </a>
+          <span class="fine">Free to download. No sign-up. No ads.</span>
+        </div>
+      </div>
+      <div class="phones" aria-hidden="false">
+        <div class="phone back"><img src="img/groceries-2.jpg" alt="Dinnerkind grocery list: 44 things for 7 dinners, sorted by store section" loading="eager"></div>
+        <div class="phone front"><img src="img/this-week-2.jpg" alt="Dinnerkind This Week screen showing tonight’s dinner, Chicken Souvlaki Rice Bowls" loading="eager"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. PROBLEM -->
+  <section class="problem" aria-labelledby="problem-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Why dinner feels hard</span>
+        <h2 id="problem-title">Cooking isn’t the hard part. <em>Deciding is.</em></h2>
+        <p>Most nights, the problem comes before you cook: choosing a dinner, shopping for it, and using everything before it spoils.</p>
+      </div>
+      <div class="grid4">
+        <article class="pcard">
+          <div class="vis" aria-hidden="true">
+            <span class="time">Today 5:04 PM</span>
+            <span class="bub in">What’s for dinner?</span>
+            <span class="bub out">I don’t know, what do you want?</span>
+            <span class="bub dots">• • •</span>
+          </div>
+          <span class="q">“What’s for dinner?” every single night</span>
+          <p>The same question at 5 p.m., with no energy left to answer it.</p>
+          <span class="ans">Dinnerkind picks all 7 dinners at once.</span>
+        </article>
+        <article class="pcard">
+          <div class="vis" aria-hidden="true">
+            <div class="shelf">
+              <span class="tag">Parsley <small>used 1 tbsp</small></span>
+              <span class="tag">½ red onion <small>unused</small></span>
+              <span class="tag gone">Baby spinach <small>trash</small></span>
+            </div>
+          </div>
+          <span class="q">Food going bad before you use it</span>
+          <p>You buy parsley for one tablespoon. Half a red onion unused in the fridge. Spinach in the trash by Friday.</p>
+          <span class="ans">Your dinners share groceries, so the rest gets used.</span>
+        </article>
+        <article class="pcard">
+          <div class="vis" aria-hidden="true">
+            <div class="receipt"><b>GROCERY</b>Fresh basil<br>Heavy cream<br>Shallots<br><span class="x">Tortillas</span></div>
+            <span class="note">Forgot tortillas</span>
+          </div>
+          <span class="q">Spending too much at the store</span>
+          <p>No list, so you buy things you might use and still forget what you needed.</p>
+          <span class="ans">One list for the week, sorted by store section.</span>
+        </article>
+        <article class="pcard">
+          <div class="vis" aria-hidden="true">
+            <span class="clock">6:47<small>PM · NOTHING PLANNED</small></span>
+            <div class="notif"><i><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="1.9" stroke-linejoin="round" stroke-linecap="round"><path d="M4 9h16l-2 11H6L4 9z"/><path d="M3 9l2.5-3h13L21 9"/><path d="M9 6c0-2.2 1.3-3.5 3-3.5S15 3.8 15 6"/></svg></i><strong>Your usual order?</strong><span>Takeout, again</span></div>
+          </div>
+          <span class="q">Too tired to cook on weeknights</span>
+          <p>When nothing’s planned, takeout wins again.</p>
+          <span class="ans">Tonight is already decided, with easy steps to follow.</span>
+        </article>
+      </div>
+      <div class="quote">
+        <b>Recipe apps give you ideas. You still have to make the plan.</b>
+        <span>Dinnerkind makes the plan: a week of dinners and the grocery list to match.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. COMPARISON -->
+  <section class="compare" aria-labelledby="compare-title">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Side by side</span>
+        <h2 id="compare-title">Picking recipes one at a time <em>wastes food.</em></h2>
+        <p>Here’s what changes when the whole week is planned together.</p>
+      </div>
+      <div class="ctable" role="table" aria-label="Recipe apps compared with Dinnerkind">
+        <div class="crow headrow" role="row"><div role="columnheader">Recipe apps and random picks</div><div role="columnheader">Dinnerkind</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>One recipe at a time</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>7 dinners planned at once</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Groceries bought for one meal</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Dinners that share groceries</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Half-used groceries go bad</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Leftover ingredients go into another dinner within 2 days</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>A separate list app, or no list</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>One grocery list, sorted by store section</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>You check every recipe for allergies</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Dinners with your allergies left out</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Plans don’t change when your week does</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Skip a night you’re eating out, and the list updates</div></div>
+        <div class="crow" role="row"><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#efeef3"/><path d="M7 7l6 6M13 7l-6 6" stroke="#9a98aa" stroke-width="1.8" stroke-linecap="round"/></svg>Sign-ups, ads and pop-ups</div><div role="cell"><svg class="mk" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="#5a4bf0"/><path d="M6 10.4l2.6 2.6L14 7.6" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>No sign-up. No ads. Open it and start.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FEATURES -->
+  <section class="features" aria-labelledby="features-title">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Meet Dinnerkind</span>
+        <h2 id="features-title">Everything for dinner, <em>in one place.</em></h2>
+        <p>The week’s dinners, the grocery list, the recipes and the cooking steps all work together.</p>
+      </div>
+
+      <div class="feat">
+        <div class="fcopy">
+          <span class="eyebrow">This Week</span>
+          <h3>Tonight is already decided.</h3>
+          <p>Open the app and see tonight’s dinner, plus the rest of the week. Don’t feel like one? Swap any night you want.</p>
+          <ul><li>7 dinners picked for your household</li><li>Cook time and instructions on every dinner</li><li>Swap a night in one tap</li><li>Eating out? Skip any night, and its groceries come off the list</li></ul>
+        </div>
+        <div class="fshot onphoto" style="--bg:url(img/roast-chicken.jpg)"><div class="phone"><img src="img/this-week.jpg" alt="This Week screen with tonight’s dinner, Honey Mustard Salmon with Green Beans, and the rest of the week" loading="lazy"><span class="callout l" style="top:57%" aria-hidden="true"><span>Tonight’s dinner</span></span><span class="callout r" style="top:71%" aria-hidden="true"><span>Swap any night</span></span></div></div>
+      </div>
+
+      <div class="feat">
+        <div class="fcopy">
+          <span class="eyebrow">Dinners that share groceries</span>
+          <h3>Thursday’s spinach goes into Friday’s dinner.</h3>
+          <p>Use half a bag of spinach in Thursday’s dinner, and the rest goes into a different dinner within 2 days. The app shows you which dinner uses it next.</p>
+          <div class="stat"><b>47</b> items for 7 dinners in a sample week, 4 fewer than 7 dinners picked at random</div>
+        </div>
+        <div class="fshot onphoto" style="--bg:url(img/spinach-board.jpg)"><div class="phone"><img src="img/first-week.jpg" alt="Your first week: spinach from Thursday’s dinner is used again on Friday" loading="lazy"><span class="callout r" style="top:67%" aria-hidden="true"><span>Spinach: Thu → Fri</span></span></div></div>
+      </div>
+
+      <div class="feat">
+        <div class="fcopy">
+          <span class="eyebrow">Groceries</span>
+          <h3>One grocery list for the week.</h3>
+          <p>Sorted by store section: produce, dairy, pantry and more. Add your own items too, like paper towels, and send the list to someone else in the house.</p>
+          <ul><li>Shows which items are used in more than one dinner</li><li>Check things off as you shop</li><li>Buy only what your 7 dinners need</li></ul>
+        </div>
+        <div class="fshot onphoto" style="--bg:url(img/grocery-bags.jpg)"><div class="phone"><img src="img/groceries.jpg" alt="Grocery list sorted by store section, with baby spinach used in 2 dinners" loading="lazy"><span class="callout l" style="top:58%" aria-hidden="true"><span>Sorted by store section</span></span><span class="callout r" style="top:76%" aria-hidden="true"><span>Used in 2 dinners</span></span></div></div>
+      </div>
+
+      <div class="feat">
+        <div class="fcopy">
+          <span class="eyebrow">Your family, your way</span>
+          <h3>Don’t like an ingredient? Swap it.</h3>
+          <p>Tap the arrows next to an ingredient, like the ginger or tamari here, to pick a substitute. Your grocery list updates too. Tell it how many people you cook for and any food allergies, and dinners with those allergies are left out.</p>
+          <ul><li>Swap one ingredient, like feta for goat cheese</li><li>Your grocery list updates to match</li><li>Ingredient amounts match how many you cook for</li></ul>
+        </div>
+        <div class="fshot onphoto" style="--bg:url(img/beef-broccoli.jpg)"><div class="phone"><img src="img/recipe-3.jpg" alt="Beef and Broccoli Stir-Fry recipe with an option to swap an ingredient" loading="lazy"><span class="callout r" style="top:84%" aria-hidden="true"><span>Tap to swap</span></span><span class="callout l" style="top:47%" aria-hidden="true"><span>Allergy warning</span></span></div></div>
+      </div>
+
+      <div class="feat">
+        <div class="fcopy">
+          <span class="eyebrow">Start Cooking</span>
+          <h3>Cook one step at a time. The screen stays on.</h3>
+          <p>Big, clear steps with timers built in, so you can cook and never lose your place.</p>
+        </div>
+        <div class="fshot onphoto duo" style="--bg:url(img/cooking-pan.jpg)"><div class="phone s1"><img src="img/cook-step1.jpg" alt="Cooking mode, step 1 of 5 for Skillet Chicken Pot Pie with Biscuits, in large text" loading="lazy"><span class="callout l" style="top:24%" aria-hidden="true"><span>Big, clear steps</span></span></div><div class="phone s2"><img src="img/cook-step2.jpg" alt="Cooking mode, step 2 of 5, with a 6-minute timer for the chicken" loading="lazy"><span class="callout l" style="top:59%" aria-hidden="true"><span>Timers built in</span></span></div></div>
+      </div>
+
+      <div class="feat">
+        <div class="fcopy">
+          <span class="eyebrow">Recipes</span>
+          <h3>Easy weeknight dinners, most ready in 40 minutes or less.</h3>
+          <p>Original recipes for every night, from stir-fries to salmon. Browse by chicken, beef, seafood, vegetarian, vegan, gluten-free and more.</p>
+          <div class="stat"><b>500</b> recipes to plan from</div>
+        </div>
+        <div class="fshot onphoto" style="--bg:url(img/produce.jpg)"><div class="phone"><img src="img/recipes.jpg" alt="Recipe library with filters like vegetarian, vegan and gluten-free" loading="lazy"><span class="callout r" style="top:25%" aria-hidden="true"><span>Filter by diet</span></span><span class="callout l" style="top:32%" aria-hidden="true"><span>500 recipes</span></span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. MID CTA -->
+  <section class="mid" aria-labelledby="mid-title">
+    <div class="wrap"><div class="midbox">
+      <h2 id="mid-title">Dinnerkind doesn’t just give you recipes. <em>It plans the week.</em></h2>
+      <p>So you shop once, waste less, and nobody has to answer “what’s for dinner?” tonight.</p>
+      <a class="appstore" href="https://apps.apple.com/app/id6821738955" data-cta="middle" aria-label="Download Dinnerkind on the App Store">
+        <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+        <span><small>Download on the</small><b>App Store</b></span>
+      </a>
+      <span class="fine">Free to download. No sign-up. No ads.</span>
+    </div></div>
+  </section>
+
+  <!-- 6. WHO IT'S FOR -->
+  <section class="who" aria-labelledby="who-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Made for real weeknights</span>
+        <h2 id="who-title">Dinnerkind is for you if…</h2>
+      </div>
+      <div class="who-grid">
+      <figure class="photo" style="margin:0"><img src="img/variety.jpg" alt="Different home-cooked dinners on a table, seen from above" loading="lazy" width="1200" height="800"></figure>
+      <div class="grid4">
+        <article class="wcard"><h3>You cook most nights</h3><p>You’re the one who decides dinner, and you’d like a week off from deciding.</p></article>
+        <article class="wcard"><h3>You shop once a week</h3><p>You want to plan 7 dinners first, then buy only what you’ll cook.</p></article>
+        <article class="wcard"><h3>You have picky eaters or allergies</h3><p>You need dinners with the foods your family won’t eat left out.</p></article>
+        <article class="wcard"><h3>You’re tired of throwing food away</h3><p>You want the other half of the onion to end up in a dinner, not the trash.</p></article>
+      </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6b. WHY WE MADE IT -->
+  <section class="story" aria-labelledby="story-title">
+    <div class="wrap">
+      <div class="story-card">
+        <span class="eyebrow">Why we made Dinnerkind</span>
+        <h2 id="story-title">We didn’t need more recipes. <em>We needed someone to make the plan.</em></h2>
+        <div class="story-body">
+          <p>For years, 5 p.m. meant the same question: “What’s for dinner?” We’d open the fridge, find half a bunch of parsley going limp, and end up ordering takeout again.</p>
+          <p>We had hundreds of recipes saved. What we didn’t have was a plan.</p>
+          <p>So we built Dinnerkind. Plan the week once: 7 dinners and one grocery list. No account, no ads. Just dinner, decided.</p>
+        </div>
+        <p class="sig">The Dinnerkind team</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. HOW IT WORKS -->
+  <section class="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">How it works</span>
+        <h2 id="how-title">Two quick questions. <em>A week of dinners.</em></h2>
+      </div>
+      <figure class="photo" style="margin:0 0 22px"><img src="img/photo-cooking.jpg" alt="A couple cooking dinner together in a bright kitchen" loading="lazy" width="1400" height="933"></figure>
+      <div class="steps">
+        <article class="step"><span class="n">1</span><h3>Pick how many you cook for</h3><p>Choose the number of people and any food allergies. That’s the whole setup.</p></article>
+        <article class="step"><span class="n">2</span><h3>Get your week</h3><p>7 dinners that share groceries, with one list sorted by store section.</p></article>
+        <article class="step"><span class="n">3</span><h3>Shop once, then cook</h3><p>Check off the list at the store, then follow big, clear steps each night.</p></article>
+      </div>
+      <p class="steps-note">No account to create. Open it and start.</p>
+    </div>
+  </section>
+
+  <!-- 8. FAQ -->
+  <section class="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="head center">
+        <span class="eyebrow">Questions</span>
+        <h2 id="faq-title">Still have questions?</h2>
+      </div>
+      <div class="list">
+        <details><summary>Is Dinnerkind free?</summary><p>Yes. Dinnerkind is free to download on iPhone, with no sign-up and no ads. There’s also an optional Dinnerkind Pro subscription inside the app, which comes with a 1-week free trial.</p></details>
+        <details><summary>Do I need to make an account?</summary><p>No. There’s no sign-up. Just pick how many people you cook for and any food allergies, and your week is ready.</p></details>
+        <details><summary>Can it leave out food allergies?</summary><p>Yes. Pick from common allergies like eggs, fish, gluten, milk, peanuts, sesame, shellfish, soy, tree nuts and wheat, or add your own, and dinners that have them are left out. Dinnerkind goes by each recipe’s ingredients, and brands vary, so always check labels.</p></details>
+        <details><summary>What if I don’t like one of the dinners?</summary><p>Swap any night you want. You can also swap a single ingredient, like feta for goat cheese, and your grocery list updates too.</p></details>
+        <details><summary>What if we’re eating out some nights?</summary><p>Skip any night. On This Week, press and hold a dinner and tap Skip This Night. It becomes a night off, and its groceries come off your list, so you only shop for the dinners you’ll cook.</p></details>
+        <details><summary>How does it help me waste less food?</summary><p>Your dinners share groceries. When a dinner opens something, like a bunch of parsley or a bag of spinach, the rest is planned into another dinner within 2 days, so it gets used while it’s fresh.</p></details>
+        <details><summary>How long do the dinners take?</summary><p>Most are ready in 40 minutes or less, and every dinner shows its cook time before you start.</p></details>
+        <details><summary>Is it on Android?</summary><p>Not yet. Dinnerkind is available on iPhone from the App Store.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FINAL CTA -->
+  <section class="final" aria-labelledby="final-title">
+    <div class="wrap">
+      <h2 id="final-title">Stop deciding every night. <span>Plan the week once.</span></h2>
+      <p class="lede" style="text-align:center">7 dinners and the grocery list to match, in one place.</p>
+      <div class="cta-row" style="align-items:center">
+        <a class="appstore" href="https://apps.apple.com/app/id6821738955" data-cta="final" aria-label="Download Dinnerkind on the App Store">
+          <svg viewBox="0 0 384 512" aria-hidden="true"><path fill="currentColor" d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z"/></svg>
+          <span><small>Download on the</small><b>App Store</b></span>
+        </a>
+        <span class="fine">Free to download. No sign-up. No ads.</span>
+      </div>
+      <div class="phones salmonbg" aria-hidden="true">
+        <div class="phone"><img src="img/recipe.jpg" alt="" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/icon.png" alt="" width="30" height="30">Dinnerkind</a>
+    <nav aria-label="Footer">
+      <a href="https://apps.apple.com/app/id6821738955">Download on the App Store</a>
+      <a href="https://www.knightmileapps.com/support">Support</a>
+      <a href="https://www.knightmileapps.com/privacy-policy">Privacy Policy</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">Terms of Use</a>
+    </nav>
+    <span>© 2026 Dinnerkind. All rights reserved.</span>
+  </div>
+</footer>
+
+<div class="stickybar" id="stickybar">
+  <img src="img/icon.png" alt="" width="40" height="40">
+  <div><b>Dinnerkind: Meal Planner</b><small>Free to download. No sign-up.</small></div>
+  <a href="https://apps.apple.com/app/id6821738955" data-cta="sticky">Download</a>
+</div>
+
+<script>
+(function(){
+  if(!("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("js");
+  var els=document.querySelectorAll(".head,.pcard,.quote,.ctable,.feat,.wcard,.who-grid .photo,.how .photo,.story-card,.step,.faq details,.midbox,.final .wrap");
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px"});
+  els.forEach(function(el,i){el.classList.add("rv");var sib=el.parentElement?Array.prototype.indexOf.call(el.parentElement.children,el):0;el.style.transitionDelay=(Math.min(sib,3)*70)+"ms";io.observe(el)});
+})();
+</script>
+<script>
+(function(){
+  var bar=document.getElementById("stickybar"), hero=document.querySelector(".hero"), fin=document.querySelector(".final");
+  if(!bar||!hero||!("IntersectionObserver" in window)) return;
+  var heroOut=false, finIn=false;
+  function upd(){bar.classList.toggle("show",heroOut&&!finIn)}
+  new IntersectionObserver(function(e){heroOut=!e[0].isIntersecting;upd()}).observe(hero);
+  if(fin) new IntersectionObserver(function(e){finIn=e[0].isIntersecting;upd()},{threshold:.2}).observe(fin);
+})();
+</script>
+<script>
+/* Each ad gets its own link code. The hero text swaps to match the ad that was clicked.
+   Works with ?ad=CODE (live website), #CODE (preview), or utm_content=CODE (Meta ads). */
+(function(){
+  var V={
+    "every-night":["For parents who cook most nights","“What’s for dinner?” Every single night.","Plan the whole week at once.","Get 7 dinners picked for the week, and swap any night you want."],
+    "parsley":["For home cooks","Bought parsley for one tablespoon?","Use the rest in Tuesday’s dinner.","Your dinners share groceries, so the rest gets used while it’s fresh."],
+    "no-list":["For busy grocery runs","In the store with no list again?","Get one list for the whole week.","Sorted by store section: produce, dairy, pantry and more."],
+    "takeout":["For tired weeknight cooks","Too tired to decide. Takeout again.","Or dinner’s already picked.","Your week of dinners is planned, so tonight is already decided."],
+    "red-onion":["For anyone who cooks at home","Half a red onion, lost in the fridge.","Or Thursday’s dinner.","Opened groceries go into another dinner within 2 days."],
+    "spinach":["For families who shop once a week","You shopped on Sunday.","Friday, the spinach went in the trash.","Plan 7 dinners first, then buy only what you’ll cook."],
+    "i-dont-know":["Quick question for home cooks","How often do you say","“I don’t know, what do you want?”","One app picks the week’s dinners, so nobody has to."],
+    "sunday":["For Sunday planners","Plan the whole week","before you leave for the store.","7 dinners and the grocery list to match, in one place."],
+    "two-questions":["Dinner, planned","Two quick questions.","A week of dinners.","How many you cook for, and any food allergies. That’s the whole setup."],
+    "less-waste":["Less food in the trash","Dinners that share groceries.","So less food goes to waste.","Shared items are marked, so you see where the rest of the bag goes."],
+    "full-plate":["For parents with a full plate","One less thing to think about,","every single night.","Dinners picked for your family, with foods you don’t like left out."],
+    "before-5pm":["For busy weeknights","What if dinner was decided","before 5 p.m. hit?","Open the app and see tonight’s dinner, plus the rest of the week."],
+    "fridge":["Quick fridge check","Open your fridge.","How much of it will you actually cook?","Shop for 7 planned dinners, not for “maybe.”"],
+    "no-sign-up":["For anyone tired of app clutter","No sign-up. No ads.","Just dinner, planned.","Nothing to scan or type in. Open it and start."],
+    "picky-eaters":["For picky eaters","Don’t like an ingredient?","Swap it. The list changes too.","Feta for goat cheese, or leave out foods like mushrooms."],
+    "40-minutes":["For weeknight cooks","Easy weeknight dinners,","most ready in 40 minutes or less.","Original recipes for every night, from stir-fries to salmon."],
+    "grocery-list":["For easier grocery runs","One grocery list for the week.","Sorted by store section.","Add your own items too, like paper towels."],
+    "step-by-step":["For cooks with messy hands","Cook one step at a time.","The screen stays on.","Big, clear steps with timers built in."],
+    "spinach-tuesday":["Try this on your next grocery run","The spinach you open on Sunday","goes into Tuesday’s dinner too.","Every week, your dinners are planned to share groceries."],
+    "week-off":["For the one who always decides dinner","You decide dinner every night.","Take this week off.","Tell it how many you cook for and any allergies. It plans the rest."]
+  };
+  function pick(){
+    var code="";
+    try{
+      var q=new URLSearchParams(location.search);
+      code=q.get("ad")||q.get("utm_content")||"";
+    }catch(e){}
+    if(!code&&location.hash){code=location.hash.slice(1)}
+    code=(code||"").toLowerCase().trim();
+    return V[code]?code:"";
+  }
+  function apply(){
+    var c=pick(); if(!c) return;
+    var v=V[c];
+    document.getElementById("hero-pill").textContent=v[0];
+    document.getElementById("hero-success").textContent=v[1];
+    document.getElementById("hero-twist").textContent=v[2];
+    document.getElementById("hero-kicker").textContent=v[3];
+    var links=document.querySelectorAll('a[href^="https://apps.apple.com"]');
+    for(var i=0;i<links.length;i++){links[i].href="https://apps.apple.com/app/id6821738955?ct="+encodeURIComponent(c)}
+  }
+  apply();
+  window.addEventListener("hashchange",apply);
+})();
+</script>
+
+</html>
