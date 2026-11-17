@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Dinnerkind: Meal Planner</title>
+<meta name="apple-itunes-app" content="app-id=6821738955">
+<link rel="icon" type="image/png" href="/img/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--ink:#16161d;--muted:#5d5b6b;--brand:#5a4bf0;--bg:#fff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;padding:24px 16px}
+main{max-width:420px;text-align:center}
+img.icon{width:84px;height:84px;border-radius:20px;box-shadow:0 14px 30px -14px rgba(36,24,110,.45)}
+h1{font-family:"Inter Tight",Inter,sans-serif;font-weight:800;font-size:30px;letter-spacing:-.02em;line-height:1.12;margin:22px 0 10px}
+p{color:var(--muted);font-size:17px;line-height:1.5;margin:0 0 26px}
+a.btn{display:inline-block;background:#000;color:#fff;text-decoration:none;font-weight:600;font-size:17px;padding:15px 26px;border-radius:14px}
+a.home{display:block;margin-top:18px;color:var(--brand);text-decoration:none;font-weight:500}
+</style>
+</head>
+<body>
+<main>
+  <img class="icon" src="/img/icon.png" alt="Dinnerkind">
+  <h1 id="t">Page not found</h1>
+  <p id="d">This page doesn't exist. Dinnerkind plans 7 dinners and one grocery list for you.</p>
+  <a class="btn" href="https://apps.apple.com/app/id6821738955">Get Dinnerkind on the App Store</a>
+  <a class="home" href="/">Go to dinnerkindapp.com</a>
+</main>
+<script>
+if (location.pathname.indexOf('/join/') === 0) {
+  document.getElementById('t').textContent = 'You’re invited to shop together';
+  document.getElementById('d').textContent = 'Get Dinnerkind, then tap the invite link again to see the same grocery list.';
+  document.title = 'Shop together on Dinnerkind';
+}
+</script>
+</body>
+</html>

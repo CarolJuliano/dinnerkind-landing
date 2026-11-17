@@ -1,0 +1,10 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["XW7KWXX628.com.knightmileapps.mealplanner"],
+        "components": [{ "/": "/join/*", "comment": "Shop together invite links" }]
+      }
+    ]
+  }
+}
