@@ -343,6 +343,21 @@ footer a:hover{text-decoration:underline}
 .final .phones.salmonbg .phone{transform:none;box-shadow:0 34px 70px -20px rgba(0,0,0,.6)}
 .final .phones.salmonbg{height:auto;overflow:visible;padding-block:44px;border-radius:36px;align-items:center}
 .final{padding-bottom:72px}
+
+/* phones: problem cards swipe sideways; features before comparison */
+@media (max-width:700px){
+  main{display:flex;flex-direction:column}
+  main > .hero{order:0}main > .problem{order:1}main > .features{order:2}main > .compare{order:3}
+  main > .mid,main > .who,main > .story,main > .how,main > .faq,main > .final{order:4}
+  .problem .grid4{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-20px;padding:6px 20px 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .problem .grid4::-webkit-scrollbar{display:none}
+  .problem .pcard{flex:0 0 84%;scroll-snap-align:center}
+  .swipedots{display:flex;justify-content:center;gap:8px;margin:2px 0 4px}
+  .swipedots i{width:8px;height:8px;border-radius:50%;background:#d9d5f4;transition:background .2s,width .2s}
+  .swipedots i.on{background:var(--purple-deep);width:22px;border-radius:4px}
+  .swipehint{text-align:center;font-size:13.5px;color:var(--muted);margin:0 0 8px}
+}
+@media (min-width:701px){.swipedots,.swipehint{display:none}}
 </style>
 
 <header class="top">
@@ -428,6 +443,8 @@ footer a:hover{text-decoration:underline}
           <span class="ans">Tonight is already decided, with easy steps to follow.</span>
         </article>
       </div>
+      <div class="swipedots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="swipehint" aria-hidden="true">Swipe to see more</div>
       <div class="quote">
         <b>Recipe apps give you ideas. You still have to make the plan.</b>
         <span>Dinnerkind makes the plan: a week of dinners and the grocery list to match.</span>
@@ -717,4 +734,8 @@ footer a:hover{text-decoration:underline}
 })();
 </script>
 
+<script>
+(function(){var g=document.querySelector('.problem .grid4'),d=document.querySelectorAll('.swipedots i');if(!g||!d.length)return;
+g.addEventListener('scroll',function(){var c=g.children,best=0,bd=1e9,mid=g.scrollLeft+g.clientWidth/2;for(var i=0;i<c.length;i++){var x=c[i].offsetLeft+c[i].offsetWidth/2-g.offsetLeft;var dd=Math.abs(x-mid);if(dd<bd){bd=dd;best=i}}for(var j=0;j<d.length;j++)d[j].classList.toggle('on',j===best)},{passive:true});})();
+</script>
 </html>
