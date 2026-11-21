@@ -112,8 +112,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .phones{display:flex;justify-content:center;align-items:flex-start;position:relative;min-height:0}
 .phones .phone{max-width:min(310px,60vw)}
 .phones .phone.back{position:absolute;max-width:min(240px,48vw);transform:translate(52%,48px) rotate(4deg);z-index:0;opacity:.98}
-.phones .phone.front{z-index:1;transform:translateX(-18%) rotate(-2deg)}
-@media (max-width:520px){.phones .phone.front{transform:translateX(-22%) rotate(-2deg)}.phones .phone.back{transform:translate(48%,40px) rotate(4deg)}}
+.phones .phone.front{z-index:1;transform:translateX(-18%)}
+@media (max-width:520px){.phones .phone.front{transform:translateX(-22%)}.phones .phone.back{transform:translate(48%,40px) rotate(4deg)}}
 
 /* sections */
 section{padding-block:88px}
